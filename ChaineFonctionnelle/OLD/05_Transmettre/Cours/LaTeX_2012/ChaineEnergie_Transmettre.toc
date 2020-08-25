@@ -1,0 +1,62 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}La transmission de l'\IeC {\'e}nergie sans transformation de mouvement et sans modification de la vitesse de rotation}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}Arbres et axes}{2}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Les accouplements entre arbres align\IeC {\'e}s}{3}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Les accouplements permanents}{3}{subsubsection.1.2.1}
+\contentsline {paragraph}{\numberline {1.2.1.1}Les accouplements rigides}{4}{paragraph.1.2.1.1}
+\contentsline {paragraph}{\numberline {1.2.1.2}Les accouplements \IeC {\'e}lastiques, flexibles et joints d\IeC {\textquoteright }accouplement positifs}{4}{paragraph.1.2.1.2}
+\contentsline {subsubsection}{\numberline {1.2.2}Les accouplements temporaires}{5}{subsubsection.1.2.2}
+\contentsline {paragraph}{\numberline {1.2.2.1}Les roues libres}{5}{paragraph.1.2.2.1}
+\contentsline {paragraph}{\numberline {1.2.2.2}Les embrayages}{6}{paragraph.1.2.2.2}
+\contentsline {paragraph}{\numberline {1.2.2.3}Les coupleurs -- convertisseurs hydrodynamiques}{6}{paragraph.1.2.2.3}
+\contentsline {paragraph}{\numberline {1.2.2.4}Les limiteurs de couple}{7}{paragraph.1.2.2.4}
+\contentsline {paragraph}{\numberline {1.2.2.5}Les freins}{8}{paragraph.1.2.2.5}
+\contentsline {subsection}{\numberline {1.3}Les accouplements entre arbres s\IeC {\'e}cants}{8}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Joints d\IeC {\textquoteright }accouplement non homocin\IeC {\'e}tiques -- le joint de cardan}{9}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Joints d\IeC {\textquoteright }accouplement homocin\IeC {\'e}tiques}{9}{subsubsection.1.3.2}
+\contentsline {paragraph}{\numberline {1.3.2.1}Utilisation de deux cardans}{9}{paragraph.1.3.2.1}
+\contentsline {paragraph}{\numberline {1.3.2.2}Transmission automobile}{10}{paragraph.1.3.2.2}
+\contentsline {section}{\numberline {2}La transmission de l\IeC {\textquoteright }\IeC {\'e}nergie sans transformation de mouvement et avec modification de la vitesse de rotation}{10}{section.2}
+\contentsline {subsection}{\numberline {2.1}Mise en situation}{10}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Aspect cin\IeC {\'e}matique}{10}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}Aspect \IeC {\'e}nerg\IeC {\'e}tique}{11}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}La transmission de puissance par courroie}{11}{subsection.2.2}
+\contentsline {subsubsection}{\numberline {2.2.1}Comportement cin\IeC {\'e}matique}{11}{subsubsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.2}Longueur de courroie}{12}{subsubsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.3}Tension dans les brins de la courroie}{12}{subsubsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.4}Tension de pose}{13}{subsubsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.5}Diff\IeC {\'e}rents types de courroie}{13}{subsubsection.2.2.5}
+\contentsline {subsection}{\numberline {2.3}La transmission de puissance par cha\IeC {\^\i }ne}{14}{subsection.2.3}
+\contentsline {subsubsection}{\numberline {2.3.1}Comportement cin\IeC {\'e}matique}{14}{subsubsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.2}Longueur de cha\IeC {\^\i }ne}{15}{subsubsection.2.3.2}
+\contentsline {paragraph}{\numberline {2.3.2.1}Longueur th\IeC {\'e}orique}{15}{paragraph.2.3.2.1}
+\contentsline {paragraph}{\numberline {2.3.2.2}Longueur r\IeC {\'e}elle}{15}{paragraph.2.3.2.2}
+\contentsline {subsubsection}{\numberline {2.3.3}Repr\IeC {\'e}sentation sch\IeC {\'e}matique}{16}{subsubsection.2.3.3}
+\contentsline {subsection}{\numberline {2.4}La transmission de puissance par engrenage}{16}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Propri\IeC {\'e}t\IeC {\'e}s g\IeC {\'e}om\IeC {\'e}triques de la d\IeC {\'e}veloppante de cercle}{16}{subsubsection.2.4.1}
+\contentsline {subsubsection}{\numberline {2.4.2}Propri\IeC {\'e}t\IeC {\'e}s cin\IeC {\'e}matiques}{17}{subsubsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.3}Fabrication des engrenages}{17}{subsubsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.4}Les engrenages cylindriques \IeC {\`a} denture droite}{18}{subsubsection.2.4.4}
+\contentsline {subsubsection}{\numberline {2.4.5}Les engrenages cylindriques \IeC {\`a} denture h\IeC {\'e}lico\IeC {\"\i }dale}{18}{subsubsection.2.4.5}
+\contentsline {subsubsection}{\numberline {2.4.6}Les engrenages coniques}{20}{subsubsection.2.4.6}
+\contentsline {subsubsection}{\numberline {2.4.7}Cas d'un engrenage gauche : le syst\IeC {\`e}me roue et vis sans fin}{21}{subsubsection.2.4.7}
+\contentsline {subsection}{\numberline {2.5}Les trains d'engrenages}{22}{subsection.2.5}
+\contentsline {subsubsection}{\numberline {2.5.1}Les trains d'engrenages simples}{23}{subsubsection.2.5.1}
+\contentsline {paragraph}{\numberline {2.5.1.1}Les r\IeC {\'e}ducteurs \IeC {\'e}l\IeC {\'e}mentaires}{23}{paragraph.2.5.1.1}
+\contentsline {subsubsection}{\numberline {2.5.2}Les trains d'engrenages simples}{24}{subsubsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.3}Les trains \IeC {\'e}picyclo\IeC {\"\i }daux}{25}{subsubsection.2.5.3}
+\contentsline {subsubsection}{\numberline {2.5.4}Les bo\IeC {\^\i }tes de vitesse}{26}{subsubsection.2.5.4}
+\contentsline {section}{\numberline {3}La transmission de l\IeC {\textquoteright }\IeC {\'e}nergie avec transformation de mouvement}{28}{section.3}
+\contentsline {subsection}{\numberline {3.1}La transmission de puissance par m\IeC {\'e}canisme Vis -- Ecrou}{28}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}Fonctions techniques d\IeC {\textquoteright }une liaison h\IeC {\'e}lico\IeC {\"\i }dale}{28}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Les montages courants}{28}{subsubsection.3.1.2}
+\contentsline {subsection}{\numberline {3.2}La transmission de puissance par m\IeC {\'e}canismes articul\IeC {\'e}s}{33}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Le syst\IeC {\`e}me bielle / manivelle}{34}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Les syst\IeC {\`e}mes \IeC {\`a} excentriques}{34}{subsubsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.3}Les syst\IeC {\`e}mes \IeC {\`a} cames}{35}{subsubsection.3.2.3}
+\contentsline {subsubsection}{\numberline {3.2.4}Syst\IeC {\`e}me \IeC {\`a} excentriques \IeC {\`a} biellette}{36}{subsubsection.3.2.4}
+\contentsline {subsubsection}{\numberline {3.2.5}M\IeC {\'e}canisme \IeC {\`a} croix de Malte}{37}{subsubsection.3.2.5}
+\contentsline {subsubsection}{\numberline {3.2.6}Le pantographe}{37}{subsubsection.3.2.6}
+\contentsline {subsubsection}{\numberline {3.2.7}Syst\IeC {\`e}me \IeC {\`a} v\IeC {\'e}rin fixe et biellette}{38}{subsubsection.3.2.7}
+\contentsline {subsubsection}{\numberline {3.2.8}Syst\IeC {\`e}me \IeC {\`a} v\IeC {\'e}rin pivotant}{38}{subsubsection.3.2.8}
+\contentsfinish 
