@@ -1,0 +1,2808 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\author{}
+\date{}
+
+\begin{document}
+
+\includegraphics[width=9.01493in,height=4.10448in]{media/image1.png}
+
+\hypertarget{introduction-guxe9nuxe9rale}{%
+\section{Introduction générale}\label{introduction-guxe9nuxe9rale}}
+
+L'objectif de ce document est de procurer une introduction aux
+technologies couramment utilisées en Sciences Industrielles pour
+l'Ingénieur. Il contient des descriptions de composants ainsi que des
+éléments permettant de comprendre leur fonctionnement et leur
+modélisation. Afin de structurer cet inventaire et de faciliter son
+utilisation nous découperons le document selon les principes de la
+chaine fonctionnelle. On rappelle que l'objet de la chaine fonctionnelle
+est de décrire les composants et les flux (matière, énergie,
+information) qui permettent à un système d'ajouter une valeur à une
+matière d'œuvre. Les deux premiers chapitres couvrent les fonctions
+\emph{acquérir} et \emph{traiter} de la chaine d'information.
+
+Les fonctions \emph{stocker, alimenter, moduler, convertir} et
+\emph{transmettre} sont l'objet des 5 chapitres suivant. La fonction
+d'action n'est pas détaillée car elle est pratiquement unique à chaque
+système en fonction de son cas d'utilisation.
+
+\emph{Remarques~:} La fonction \emph{communiquer} fait l'objet d'un
+document séparé. En PCSI-PSI les détails de la couche de communication
+ne sont pas abordés. En général le bloc communication concerne un
+procédé de et non un composant spécifique entre l'unité de traitement et
+le préactionneur (modulation, commutation).
+
+\emph{Exemple de protocole entre un microcontrôleur et un
+préactionneur~:} rapport cyclique d'un signal PWM pour communiquer une
+grandeur ou bus I2C pour échanger des informations plus complexes.
+
+Lorsqu'un système fait appel à plusieurs unités de traitement (un
+ordinateur déporté et un microcontrôleur par exemple) la qualité de la
+connexion et l'architecture du système d'information permettent en
+général de considérer que l'impact des procédés de communication est
+négligeable sur la modélisation du comportement du système
+
+La fonction «~restituer/Interface homme machine~» fait référence aux
+voyants, afficheurs, écrans, haut-parleurs...
+
+\includegraphics[width=6.83747in,height=1.96354in]{media/image5.png}
+
+\hypertarget{table-des-matiuxe8res}{%
+\section{Table des matières}\label{table-des-matiuxe8res}}
+
+\protect\hyperlink{introduction-guxe9nuxe9rale}{1 Introduction générale
+1}
+
+\protect\hyperlink{fonction-acquuxe9rir}{2 Fonction acquérir 5}
+
+\protect\hyperlink{nature-des-informations-grandeur-analogique-numuxe9rique-binaire}{2.1
+Nature des informations \emph{Grandeur Analogique, Numérique, Binaire}
+5}
+
+\protect\hyperlink{signal-dans-un-systuxe8me-numuxe9rique-uxe9chantillonnage-et-ruxe9solution}{2.2
+signal~dans un système numérique : échantillonnage et résolution 6}
+
+\protect\hyperlink{caractuxe9ristiques-des-capteurs}{2.3
+Caractéristiques des capteurs 7}
+
+\protect\hyperlink{duxe9finitions}{2.3.1 Définitions \emph{Mesurande,
+Fidélité, Justesse, Précision, Exactitude, Etalonnage, Calibration,
+Resolution, Sensibilité, Rapidité,} 7}
+
+\protect\hyperlink{probluxe8mes-de-mesure-offset-gain-linuxe9arituxe9}{2.3.2
+Problèmes de mesure \emph{Offset, Gain, Linéarité} 8}
+
+\protect\hyperlink{les-duxe9tecteurs-capteurs-logiques}{2.4 Les
+détecteurs -- Capteurs logiques 9}
+
+\protect\hyperlink{duxe9tecteurs-uxe0-contactfin-de-course}{2.4.1
+Détecteurs à contact/Fin de course 9}
+
+\protect\hyperlink{capteur-pneumatique}{2.4.2 Capteur pneumatique 9}
+
+\protect\hyperlink{interrupteur-uxe0-lame-souples-ils}{2.4.3
+Interrupteur à lame souples (ILS) 10}
+
+\protect\hyperlink{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9}{2.4.4
+Détecteur photoélectrique barrage, reflex/proximité 10}
+
+\protect\hyperlink{duxe9tecteur-inductif}{2.4.5 Détecteur inductif 11}
+
+\protect\hyperlink{duxe9tecteur-capacitif}{2.4.6 Détecteur capacitif 11}
+
+\protect\hyperlink{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9-1}{2.4.7
+Détecteur photoélectrique barrage, reflex/proximité 12}
+
+\protect\hyperlink{capteur-uxe0-effet-hall-simple}{2.4.8 Capteur à effet
+Hall simple 12}
+
+\protect\hyperlink{crituxe8res-de-choix-des-duxe9tecteurs}{2.4.9
+Critères de choix des détecteurs 13}
+
+\protect\hyperlink{les-capteurs-analogiques}{2.5 Les capteurs
+analogiques 14}
+
+\protect\hyperlink{mesures-des-longueurs-et-des-angles-potentiomuxe8tre-linuxe9aire-et-angulaires}{2.5.1
+Mesures des longueurs et des angles -- Potentiomètre linéaire et
+angulaires 14}
+
+\protect\hyperlink{mesure-de-vitesse-guxe9nuxe9ratrice-tachymuxe9trique}{2.5.2
+Mesure de vitesse -- Génératrice tachymétrique 14}
+
+\protect\hyperlink{mesure-de-force-et-de-couple-jauges-de-contraintes-extenso-muxe9triques}{2.5.3
+Mesure de force et de couple -- Jauges de contraintes (extenso
+métriques) 15}
+
+\protect\hyperlink{mesure-de-force-capteur-piuxe9zo-uxe9lectrique}{2.5.4
+Mesure de force -- Capteur piézo électrique 15}
+
+\protect\hyperlink{mesure-de-tempuxe9rature-thermocouple}{2.5.5 Mesure
+de température -- Thermocouple 15}
+
+\protect\hyperlink{mesure-de-laccuxe9luxe9ration}{2.5.6 Mesure de
+l'accélération 16}
+
+\protect\hyperlink{les-capteurs-numuxe9riques}{2.6 Les capteurs
+numériques 16}
+
+\protect\hyperlink{mesure-de-position-et-de-vitesse-codeur-incruxe9mental}{2.6.1
+Mesure de position (et de vitesse) -- Codeur incrémental 16}
+
+\protect\hyperlink{mesure-de-position-codeur-absolu}{2.6.2 Mesure de
+position -- Codeur absolu 17}
+
+\protect\hyperlink{capteurs-intelligents}{2.7 Capteurs intelligents 17}
+
+\protect\hyperlink{capteur-de-champ-magnuxe9tique-et-dangle-de-rotation-uxe0-effet-hall}{2.7.1
+Capteur de champ magnétique et d'angle de rotation à effet Hall 17}
+
+\protect\hyperlink{gyroscopegyromuxe8tre-numuxe9rique}{2.7.2
+Gyroscope/gyromètre numérique 17}
+
+\protect\hyperlink{capteur-dattitude-centrale-inertielle-motion-processing-unit.}{2.7.3
+Capteur d'attitude / centrale inertielle / M\emph{otion Processing
+Unit.} 18}
+
+\protect\hyperlink{autres-capteurs}{2.8 Autres capteurs 18}
+
+\protect\hyperlink{capteurs-de-pression}{2.8.1 Capteurs de pression 18}
+
+\protect\hyperlink{capteur-de-duxe9bit}{2.8.2 Capteur de débit 18}
+
+\protect\hyperlink{capteurs-uxe0-ultrason-sonar-sg}{2.8.3 Capteurs à
+ultrason / sonar (SG) 18}
+
+\protect\hyperlink{ruxe9solveur-sg}{2.8.4 Résolveur (SG) 18}
+
+\protect\hyperlink{lidar}{2.8.5 LIDAR 18}
+
+\protect\hyperlink{traitement-de-linformation}{3 Traitement de
+l'information 19}
+
+\protect\hyperlink{automate-programmables-industriels-api}{3.1 Automate
+programmables industriels (API) 19}
+
+\protect\hyperlink{cartes-programmables-carte-arduino}{3.2 Cartes
+programmables -- Carte Arduino 20}
+
+\protect\hyperlink{traitement-avec-cuxe2blage-uxe9lectrique-pneumatique-et-hydraulique}{3.2.1
+Traitement avec câblage électrique, pneumatique et hydraulique 20}
+
+\protect\hyperlink{traitement-avec-un-automate-logique}{3.2.2 Traitement
+avec un automate logique 20}
+
+\protect\hyperlink{traitement-avec-un-fpga}{3.2.3 Traitement avec un
+FPGA 20}
+
+\protect\hyperlink{traitement-avec-un-digital-signal-processor-dsp}{3.2.4
+Traitement avec un Digital Signal Processor DSP 20}
+
+\protect\hyperlink{fonction-convertir}{4 Fonction Convertir 21}
+
+\protect\hyperlink{les-moteurs-uxe9lectriques}{4.1 Les moteurs
+électriques 21}
+
+\protect\hyperlink{le-moteur-uxe0-courant-continu}{4.1.1 Le moteur à
+courant continu 21}
+
+\protect\hyperlink{le-moteur-brushless-sans-broches}{4.1.2 Le moteur
+brushless (sans broches) 21}
+
+\protect\hyperlink{le-moteur-asynchrone}{4.1.3 Le moteur asynchrone 21}
+
+\protect\hyperlink{le-moteur-pas-uxe0-pas}{4.1.4 Le moteur pas à pas 22}
+
+\protect\hyperlink{actionneurs-linuxe9aires}{4.1.5 Actionneurs linéaires
+22}
+
+\protect\hyperlink{convertisseurs-duxe9nergie-pneumatique-ou-hydraulique}{4.2
+Convertisseurs d'énergie pneumatique ou hydraulique 23}
+
+\protect\hyperlink{moteurs-thermiques}{4.3 Moteurs thermiques 24}
+
+\protect\hyperlink{fonction-transmettre}{5 Fonction Transmettre 24}
+
+\protect\hyperlink{eluxe9ments-de-liaisons}{5.1 Eléments de liaisons 24}
+
+\protect\hyperlink{transmission-par-engrenages}{5.2 Transmission par
+engrenages 24}
+
+\protect\hyperlink{engrenage-uxe0-contact-extuxe9rieur}{5.2.1 Engrenage
+à contact extérieur 24}
+
+\protect\hyperlink{engrenage-uxe0-contact-intuxe9rieur}{5.2.2 Engrenage
+à contact intérieur 25}
+
+\protect\hyperlink{roues-et-vis-sans-fin}{5.2.3 Roues et vis sans fin
+25}
+
+\protect\hyperlink{renvoi-dangle}{5.2.4 Renvoi d'angle~: 25}
+
+\protect\hyperlink{transmission-par-courroies-et-chaines}{5.3
+Transmission par courroies et chaines 25}
+
+\protect\hyperlink{boites-de-vitesse}{5.4 Boites de vitesse 26}
+
+\protect\hyperlink{convertisseurs-multiples}{5.5 Convertisseurs
+multiples 26}
+
+\protect\hyperlink{fonction-modulercommuter}{6 Fonction moduler/commuter
+26}
+
+\protect\hyperlink{introduction}{6.1 Introduction 26}
+
+\protect\hyperlink{les-modulateurs-uxe9lectriques}{6.2 Les modulateurs
+électriques 27}
+
+\protect\hyperlink{le-relai-ou-contacteur-de-puissance}{6.2.1 Le relai
+(ou contacteur de puissance) 27}
+
+\protect\hyperlink{le-hacheur-convertisseur-statique}{6.2.2 Le hacheur
+(convertisseur statique) 28}
+
+\protect\hyperlink{londuleur-variateur}{6.2.3 L'onduleur (variateur) 29}
+
+\protect\hyperlink{notion-de-schuxe9ma-uxe9lectrique}{6.2.4 Notion de
+schéma électrique 29}
+
+\protect\hyperlink{les-modulateurs-pneumatiques-et-hydrauliques}{6.3 Les
+modulateurs pneumatiques et hydrauliques 30}
+
+\protect\hyperlink{les-distributeurs}{6.4 Les distributeurs 30}
+
+\protect\hyperlink{duxe9signation-des-distributeurs}{6.5 Désignation des
+distributeurs 31}
+
+\protect\hyperlink{fonction-stocker}{7 Fonction stocker 32}
+
+\protect\hyperlink{piles-et-batteries}{7.1 Piles et batteries 32}
+
+\protect\hyperlink{energies-pneumatiques-et-hydrauliques}{7.2 Energies
+pneumatiques et hydrauliques 32}
+
+\protect\hyperlink{stockage-par-gravituxe9}{7.3 Stockage par gravité 33}
+
+\protect\hyperlink{stockage-inertiel}{7.4 Stockage inertiel 33}
+
+\protect\hyperlink{ressorts}{7.5 Ressorts 34}
+
+\protect\hyperlink{energie-thermique}{7.6 Energie thermique 34}
+
+\protect\hyperlink{fonction-alimenter}{8 Fonction Alimenter 34}
+
+\protect\hyperlink{alimentation-uxe9lectrique}{8.1 Alimentation
+électrique 34}
+
+\protect\hyperlink{transformateur}{8.1.1 Transformateur 34}
+
+\protect\hyperlink{alimentation-uxe9lectrique-uxe0-duxe9coupage}{8.1.2
+Alimentation électrique à découpage 34}
+
+\protect\hyperlink{ruxe9gulateur-de-tension}{8.1.3 Régulateur de tension
+34}
+
+\protect\hyperlink{alimentation-pneumatique-et-hydraulique}{8.2
+Alimentation pneumatique et hydraulique 35}
+
+\protect\hyperlink{ruxe9gulateur-de-pression}{8.2.1 Régulateur de
+pression 35}
+
+\protect\hyperlink{systuxe8mes-de-conditionnement}{8.2.2 Systèmes de
+conditionnement 35}
+
+\protect\hyperlink{systuxe8mes-de-suxe9curituxe9}{8.2.3 Systèmes de
+sécurité 35}
+
+\protect\hyperlink{schuxe9ma-composants-pneumatiques-et-hydrauliques}{9
+Schéma -- Composants pneumatiques et hydrauliques 36}
+
+\protect\hyperlink{ressources}{10 Ressources 37}
+
+\hypertarget{fonction-acquuxe9rir}{%
+\section{Fonction acquérir}\label{fonction-acquuxe9rir}}
+
+\hypertarget{nature-des-informations-grandeur-analogique-numuxe9rique-binaire}{%
+\subsection{\texorpdfstring{Nature des informations \emph{Grandeur
+Analogique, Numérique,
+Binaire}}{Nature des informations Grandeur Analogique, Numérique, Binaire}}\label{nature-des-informations-grandeur-analogique-numuxe9rique-binaire}}
+
+Dans la chaîne d'information, les informations peuvent être de trois
+natures différentes~: analogique, numérique et binaire. Le capteur va
+acquérir une grandeur analogique et va la transformer en une tension,
+elle-même étant aussi une grandeur analogique. Pour pouvoir être
+traitée, elle va d'abord être convertie en information numérique grâce à
+un Convertisseur Analogique Numérique (\textbf{CAN}). L'information
+numérique est alors traitée et stockée sous forme binaire.
+
+\includegraphics[width=6.43023in,height=2.21159in]{media/image6.png}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Grandeur analogique}
+
+Une information analogique peut prendre, de manière continue, toutes les
+valeurs possibles dans un intervalle donné. Un signal analogique peut
+être représenté par une courbe continue. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Exemple :}
+
+Les grandeurs physiques (température, vitesse, position, tension, ...)
+sont des grandeurs analogiques. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Grandeur numérique}
+
+Une information numérique est constituée de plusieurs bits (variables
+binaires 0/1). Elle est en général issue d'un traitement
+(échantillonnage et codage) d'une information analogique. On parle de
+conversion analogique -- numérique (CAN). \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Grandeur binaire}
+
+Les informations logiques sont des informations binaires. Elles sont de
+type 0 ou 1, vrai ou faux, ouvert ou fermé, tout ou rien (TOR). \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Exemple :}
+
+Variables de type «~boolean~» en Python, état d'un
+interrupteur\ldots{} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{signal-dans-un-systuxe8me-numuxe9rique-uxe9chantillonnage-et-ruxe9solution}{%
+\subsection{signal~dans un système numérique : échantillonnage et
+résolution}\label{signal-dans-un-systuxe8me-numuxe9rique-uxe9chantillonnage-et-ruxe9solution}}
+
+Lorsque l'on fait l'acquisition d'un signal de mesure sur un système
+numérique, celui-ci doit se conformer à deux contraintes~: la
+\textbf{résolution} et \textbf{l'échantillonnage}. La résolution
+correspond à l'intervalle minimum entre deux mesures et
+l'échantillonnage au temps qui sépare deux prises de mesure. Ces
+contraintes font partis des facteurs qui limite la précision et la
+connaissance d'une mesure. En fonction de la gamme et du niveau
+d'intégration d'un capteur et de son système d'enregistrement ces
+paramètres varient fortement par exemple les résolutions usuelles sont
+comprises entre 8 et 20 bits soit entre 256 et 1047576 points de mesure.
+
+\emph{Exemple~:} Mesure d'un angle à l'aide d'un potentiomètre
+rotatif~sur un microcontrôleur.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Conversion analogique numérique à l'aide d'un module intégré au
+  microcontrôleur. Le convertisseur dispose d'un \emph{nombre de bits}
+  permettant de traduire la valeur numériquement. Par exemple, sur un
+  contrôleur Arduino Uno 8 bit permettent de coder les signaux
+  analogiques. On obtient une résolution de \(2^{8} = 256\) valeurs
+  distinctes sur l'intervalle de mesure de 5V. Si le potentiomètre est
+  monotour on la résolution est de \(\frac{360}{256} = 1,42{^\circ}\).
+  C'est l'intervalle minimum entre 2 mesures.
+\end{enumerate}
+
+\begin{quote}
+Attention la précision de la mesure est en général moins intéressante
+que cet intervalle. Par exemple si le potentiomètre présente un défaut
+de linéarité de 2 \% la tension électrique de mesure n'est plus une
+mesure parfaite de l'angle avec un défaut de 2\% soit l'équivalent de
+7,2°~!
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Enregistrement de la valeur toute les 1ms (paramétrable dans une
+  certaine mesure en fonction de la rapidité du système d'acquisition ou
+  de la vitesse d'exécution du programme dans le cas du
+  microcontrolleur.
+\end{enumerate}
+\end{minipage} &
+\includegraphics[width=1.23636in,height=1.23636in]{media/image7.jpeg}
+
+\includegraphics[width=1.44713in,height=1in]{media/image8.jpeg} \\
+\midrule
+\endhead
+\includegraphics[width=4.93455in,height=2.32911in]{media/image9.png}
+& \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{caractuxe9ristiques-des-capteurs}{%
+\subsection{Caractéristiques des
+capteurs}\label{caractuxe9ristiques-des-capteurs}}
+
+\hypertarget{duxe9finitions}{%
+\subsubsection{Définitions}\label{duxe9finitions}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Mesurande --} Grandeur physique à acquérir. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Fidélité --} Capacité à donner des résultats
+répétables sur un échantillon de mesures. (Figure 1) \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Justesse --} Capacité à donner une valeur moyenne
+correcte sur un échantillon de mesures. (Figure 1) \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Précision/Exactitude --} Aptitude du capteur à
+donner une mesure proche de la valeur vraie. Une combinaison de fidélité
+et de justesse permet de l'obtenir (Figure 1). \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Etalonnage/Calibration --} Opération permettant
+d'associer la valeur brute délivrée par un capteur à la mesure
+recherchée. Un étalonnage réussi doit permettre d'obtenir des mesures
+précise lorsqu'un capteur est fidèle. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Étendue de la mesure --} Valeurs extrêmes pouvant
+être mesurées par le capteur. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Résolution --} Plus petite variation de grandeur
+mesurable par le capteur. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Sensibilité --} Variation du signal de sortie par
+rapport à la variation du signal d'entrée. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Rapidité --} Temps de réaction du capteur. La
+rapidité est liée à la bande passante du capteur. \\
+\bottomrule
+\end{longtable}
+
+\includegraphics[width=4.16667in,height=1.66667in]{media/image10.png}
+
+Figure 1 Fidélité Justesse Exactitude
+
+\hypertarget{probluxe8mes-de-mesure-offset-gain-linuxe9arituxe9}{%
+\subsubsection{\texorpdfstring{Problèmes de mesure \emph{Offset, Gain,
+Linéarité}}{Problèmes de mesure Offset, Gain, Linéarité}}\label{probluxe8mes-de-mesure-offset-gain-linuxe9arituxe9}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\textbf{Erreur de zéro (offset)} & \textbf{Erreur d'échelle (gain)} &
+\textbf{Erreur de linéarité} \\
+\midrule
+\endhead
+\emph{Erreur de décalage constant entre la valeur mesurée et la valeur
+réelle de la grandeur physique.} & \emph{C'est une erreur qui dépend de
+la façon linéaire à la grandeur mesurée.} & \emph{La caractéristique du
+capteur n'est pas une droite} \\
+\includegraphics[width=1.9685in,height=1.6825in]{media/image11.png} &
+\includegraphics[width=1.9685in,height=1.6825in]{media/image12.png} &
+\includegraphics[width=1.9685in,height=1.68883in]{media/image13.png} \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Erreur d'hystérésis} & \textbf{Erreur de quantification} \\
+\midrule
+\endhead
+\emph{Phénomène apparaissant lorsque le résultat de la mesure dépend de
+la précédente mesure.} & \emph{La caractéristique est un «~escalier~».
+Cette erreur est due à la conversion analogique -- numérique.} \\
+\includegraphics[width=2.16042in,height=1.84653in]{media/image14.png} &
+\includegraphics[width=2.16042in,height=1.85347in]{media/image15.png} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{les-duxe9tecteurs-capteurs-logiques}{%
+\subsection{Les détecteurs -- Capteurs
+logiques}\label{les-duxe9tecteurs-capteurs-logiques}}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\endhead
+\textbf{Définition : Détecteurs --} Les détecteurs permettent de
+détecter la présence ou l'absence d'un objet ou d'un niveau
+prédéterminé. Ils délivrent une information booléenne (vrai/faux) sous
+forme électrique, pneumatique ou hydraulique. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9tecteurs-uxe0-contactfin-de-course}{%
+\subsubsection{Détecteurs à contact/Fin de
+course}\label{duxe9tecteurs-uxe0-contactfin-de-course}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} Contact
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:} interrupteurs normalement ouverts et fermés.
+
+\includegraphics[width=1.34375in,height=0.875in]{media/image16.png} &
+\includegraphics[width=0.82986in,height=1.71944in]{media/image17.png}\textbf{Principe
+de fonctionnement}
+
+Ce détecteur est un interrupteur de position permettant de délivrer une
+information «~Tout ou rien~» en fonction de la position d'un organe de
+commande.
+
+Un tel détecteur est alimenté (par exemple en 5V -- 2 fils). On mesure
+alors la tension sur une borne de sortie. (L'état de la tension mesurée
+correspond à l'état ouvert ou fermé de l'interrupteur.) \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\includegraphics[width=3.23256in,height=1.72406in]{media/image18.png}\includegraphics[width=1.91839in,height=1.61628in]{media/image19.png}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\textbf{Exemples :} Détecteur de présence de bocal capsuleuse, fin de
+course du mors de la cordeuse, \ldots{} \\
+\midrule
+\endhead
+ \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{capteur-pneumatique}{%
+\subsubsection{Capteur pneumatique}\label{capteur-pneumatique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} Contact
+
+\textbf{Nature du signal délivré~:} Signal pneumatique
+
+\textbf{Symbole pneumatique}
+
+\includegraphics[width=0.70453in,height=1.14134in]{media/image20.png} &
+\includegraphics[width=1.85833in,height=1.59236in]{media/image21.png}\textbf{Principe
+de fonctionnement}
+
+L'air arrive par l'orifice inférieur. Un orifice est relié à la sortie.
+Lorsqu'on presse sur le galet, de l'air peut alors passer par l'orifice
+de sortie.
+
+On détecte ainsi la présence d'un objet. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+&
+\includegraphics[width=1.30266in,height=0.93809in]{media/image22.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Pas d'exemple dans notre laboratoire. & \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{interrupteur-uxe0-lame-souples-ils}{%
+\subsubsection{Interrupteur à lame souples
+(ILS)}\label{interrupteur-uxe0-lame-souples-ils}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\includegraphics[width=0.56667in,height=0.86389in]{media/image23.png}\textbf{Nature
+du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:} & \textbf{Principe de fonctionnement}
+
+\includegraphics[width=2.55972in,height=1.5in]{media/image24.png}Les
+détecteurs ILS équipent les vérins, permettant de détecter la présence
+de la tige aux extrémités du vérin.
+
+Ils sont formés de deux lames métalliques souples très proches l'une de
+l'autre. Si le capteur est placé dans un champ magnétique alors les deux
+lames souples se mettent en contact et un courant électrique peut
+circuler de l'une vers l'autre. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\endhead
+\textbf{Exemples :}
+
+Vérins de la capsuleuse. &
+\includegraphics[width=1.60157in,height=0.74426in]{media/image25.png} &
+\includegraphics[width=1.33636in,height=0.87209in]{media/image26.png} \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9}{%
+\subsubsection{Détecteur photoélectrique barrage,
+reflex/proximité}\label{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:}
+
+\includegraphics[width=0.45169in,height=0.75541in]{media/image27.png} &
+\textbf{Principe de fonctionnement}
+
+Un détecteur photoélectrique est composé d'un émetteur (DEL) et d'un
+récepteur (phototransistor). Lorsque émetteur et récepteur sont
+dissociés, o parle de barrage. Sinon, on parle de reflex (existante
+d'une cible réfléchissante) ou de système proximité.
+
+Dans le cas du barrage ou du reflex, on détecte une pièce lorsque le
+faisceau lumineux est coupé. Dans le cas du système proximité, la pièce
+réfléchit le faisceau.
+
+\includegraphics[width=3.32014in,height=0.98681in]{media/image28.png} \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\endhead
+\textbf{Exemples :}
+
+Ces détecteurs peuvent être utilisés dans les codeurs incrémentaux (Voir
+plus loin).
+
+Ils permettent de détecter des objets transparents, opaques\ldots{} &
+\includegraphics[width=1.11628in,height=1.11628in]{media/image29.jpeg} &
+\includegraphics[width=1.00184in,height=1.18405in]{media/image30.jpeg} \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9tecteur-inductif}{%
+\subsubsection{Détecteur inductif}\label{duxe9tecteur-inductif}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:}
+
+\includegraphics[width=0.52083in,height=0.89583in]{media/image31.png} &
+\textbf{Principe de fonctionnement}
+
+\includegraphics[width=2.07153in,height=0.79167in]{media/image32.png}Ces
+détecteurs sont utilisés pour détecter la présence, l'absence ou le
+passage d'un \textbf{objet métallique}. Les capteurs inductifs
+produisent à l'extrémité leur tête de détection un champ magnétique
+oscillant. Ce champ est généré par une inductance et une capacité montée
+en parallèle. Lorsqu'un \textbf{objet métallique} pénètre dans ce champ,
+il y a perturbation de ce champ puis atténuation du champ magnétique
+oscillant. Cela provoque ainsi le changement d'état de sortie du
+détecteur (passage de l'état 0 à l'état 1). \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+& \includegraphics[width=1.81395in,height=1.59981in]{media/image33.png}
+&
+\includegraphics[width=1.0391in,height=0.93592in]{media/image34.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Sur la capsuleuse ils permettent de détecter l'état de serrage sur la
+capsule ou la présence du maneton avant que celui-ci n'entre dans la
+croix de Malte. & & \\
+& & \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9tecteur-capacitif}{%
+\subsubsection{Détecteur capacitif}\label{duxe9tecteur-capacitif}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\includegraphics[width=0.6875in,height=1.15625in]{media/image35.png}\textbf{Nature
+de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:}
+
+Signal électrique
+
+\textbf{Symbole~:} & \textbf{Principe de fonctionnement}
+
+Ces capteurs permettent de détecter \textbf{tous types de matériaux}.
+Lorsqu'un objet est à proximité du détecteur, il perturbe le champ
+électrique entre les deux électrodes. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\textbf{Exemples :}
+
+Absents sur nos systèmes de laboratoire. Ils sont utilisés lorsque les
+détecteurs inductifs ne peuvent pas être utilisés.
+
+La distance de détection est très faible. &
+\includegraphics[width=2.08199in,height=1.61628in]{media/image36.png} \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9-1}{%
+\subsubsection{Détecteur photoélectrique barrage,
+reflex/proximité}\label{duxe9tecteur-photouxe9lectrique-barrage-reflexproximituxe9-1}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:}
+
+\includegraphics[width=0.45169in,height=0.75541in]{media/image27.png} &
+\textbf{Principe de fonctionnement}
+
+Un détecteur photoélectrique est composé d'un émetteur (DEL) et d'un
+récepteur (phototransistor). Lorsque émetteur et récepteur sont
+dissociés, o parle de barrage. Sinon, on parle de reflex (existante
+d'une cible réfléchissante) ou de système proximité.
+
+Dans le cas du barrage ou du reflex, on détecte une pièce lorsque le
+faisceau lumineux est coupé. Dans le cas du système proximité, la pièce
+réfléchit le faisceau.
+
+\includegraphics[width=3.32014in,height=0.98681in]{media/image28.png} \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\endhead
+\textbf{Exemples :}
+
+Ces détecteurs peuvent être utilisés dans les codeurs incrémentaux (Voir
+plus loin).
+
+Ils permettent de détecter des objets transparents, opaques\ldots{} &
+\includegraphics[width=1.11628in,height=1.11628in]{media/image29.jpeg} &
+\includegraphics[width=1.00184in,height=1.18405in]{media/image30.jpeg} \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{capteur-uxe0-effet-hall-simple}{%
+\subsubsection{Capteur à effet Hall
+simple}\label{capteur-uxe0-effet-hall-simple}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\includegraphics[width=5.26603in,height=3.61694in]{media/image37.jpeg}\textbf{Grandeurs
+détectées~:}
+
+Présence d'un champ magnétique, d'un aimant, angle ou vitesse de
+rotation à l'aide d'un disque à franges.
+
+\textbf{Exemple~:}
+
+Capteur point mort haut moteur voiture.~
+
+\textbf{~}
+
+Ce capteur utilise l'effet d'induction afin de détecter la présence d'un
+champ magnétique. Il permet en général de détecter le passage d'un
+aimant. C'est un capteur de présence sans contact très fiable. Par un
+montage adapté une vitesse ou un angle de rotation peuvent être mesurés
+par comptage. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{crituxe8res-de-choix-des-duxe9tecteurs}{%
+\subsubsection{Critères de choix des
+détecteurs}\label{crituxe8res-de-choix-des-duxe9tecteurs}}
+
+\includegraphics[width=6.34571in,height=4.90909in]{media/image38.png}
+
+\hypertarget{les-capteurs-analogiques}{%
+\subsection{Les capteurs analogiques}\label{les-capteurs-analogiques}}
+
+Ces capteurs permettent de mesurer une grandeur physique. Ils délivrent
+un signal continu.
+
+\hypertarget{mesures-des-longueurs-et-des-angles-potentiomuxe8tre-linuxe9aire-et-angulaires}{%
+\subsubsection{Mesures des longueurs et des angles -- Potentiomètre
+linéaire et
+angulaires}\label{mesures-des-longueurs-et-des-angles-potentiomuxe8tre-linuxe9aire-et-angulaires}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} angle ou distance
+
+\textbf{Nature du signal délivré~:}
+
+Signal électrique
+
+\includegraphics[width=2.42025in,height=1.80297in]{media/image39.png} &
+\textbf{Principe de fonctionnement~:} Ces capteurs fonctionnent comme un
+rhéostat~: un curseur se déplace sur une piste (linéaire ou circulaire).
+Un pont diviseur de tension permet de déterminer la tension. Connaissant
+la course du capteur, on peut en déduire la correspondance entre tension
+et dimension. En plaçant une tension +Vcc en B et une masse en A, la
+tension mesurée entre C et la masse sera comprise entre 0V et +Vcc et
+proportionnelle à la grandeur mécanique que l'on souhaite mesurer (angle
+ou distance).
+
+\includegraphics[width=3.58333in,height=1.59514in]{media/image40.jpeg} \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\textbf{Exemples :}
+
+Position angulaire du bras du MaxPID, position angulaire des volants de
+la DAE et de la DIRAVI, position angulaire des roues de la DAE, mesure
+de l'écrasement du ressort de la cordeuse, position angulaire des
+ventaux du portail\ldots{}
+
+On peut remarquer qu'un potentiomètre comporte 3 fils (alimentation,
+masse et mesure). &
+\includegraphics[width=1.44733in,height=1.05222in]{media/image41.png} &
+\includegraphics[width=1.63636in,height=1.38654in]{media/image42.png} \\
+\midrule
+\endhead
+& & \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-vitesse-guxe9nuxe9ratrice-tachymuxe9trique}{%
+\subsubsection{Mesure de vitesse -- Génératrice
+tachymétrique}\label{mesure-de-vitesse-guxe9nuxe9ratrice-tachymuxe9trique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} vitesse
+
+\textbf{Nature du signal délivré~:}
+
+Signal électrique & \textbf{Principe de fonctionnement}
+
+Une génératrice tachymétrique a la même structure qu'un moteur à courant
+continu. Lorsque l'axe du va tourner, il va générer une tension
+proportionnelle à sa fréquence de rotation. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+&
+\includegraphics[width=2.51948in,height=1.44156in]{media/image43.jpeg} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Mesure de la vitesse du moteur du MaxPID ou des vérins électriques de la
+plateforme 6 axes. & \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-force-et-de-couple-jauges-de-contraintes-extenso-muxe9triques}{%
+\subsubsection{Mesure de force et de couple -- Jauges de contraintes
+(extenso
+métriques)}\label{mesure-de-force-et-de-couple-jauges-de-contraintes-extenso-muxe9triques}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} effort ou couple
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\includegraphics[width=0.89583in,height=1.16875in]{media/image44.jpeg} &
+\textbf{Principe de fonctionnement}
+
+Un capteur d'effort est constitué d'un corps d'épreuve, déformable, sur
+lequel est collée une jauge. La jauge est constituée d'un fil réalisant
+des «~aller-retour~» (cf image). Lorsque le corps d'épreuve va être
+soumis à un effort, il va se déformer. Les fils vont alors s'allonger ou
+se rétracter, changeant ainsi sa résistance.
+
+La variation de résistance est proportionnelle à l'effort auquel est
+soumis le corps d'épreuve. La variation de résistance se mesure par une
+variation de tension mesurée elle-même par un pont de Wheatstone.
+
+\(F = E\varepsilon\) et \(\varepsilon = \frac{\Delta L}{L}\) (effort
+proportionnel à la déformation), \(\frac{\text{δR}}{R} = K\varepsilon\)
+(différentiel de résistance proportionnel à la déformation). \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+&
+\includegraphics[width=1.03306in,height=0.96104in]{media/image45.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Mesure de l'effort dans le portail, capteur d'effort relié à la corde
+sur la cordeuse\ldots{} & \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-force-capteur-piuxe9zo-uxe9lectrique}{%
+\subsubsection{Mesure de force -- Capteur piézo
+électrique}\label{mesure-de-force-capteur-piuxe9zo-uxe9lectrique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} effort
+
+\textbf{Nature du signal délivré~:} Signal électrique & \textbf{Principe
+de fonctionnement}
+
+Les matériaux piézoélectriques ont la propriété de se polariser sous
+l'action d'une contrainte mécanique \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+& &
+\includegraphics[width=1.94962in,height=1.10498in]{media/image46.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Ces capteurs peuvent être utilisés dans plusieurs autres capteurs~:
+capteurs d'efforts, d'accélération\ldots{} &
+\includegraphics[width=1.34341in,height=0.88312in]{media/image47.png}
+& \\
+& & \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-tempuxe9rature-thermocouple}{%
+\subsubsection{Mesure de température --
+Thermocouple}\label{mesure-de-tempuxe9rature-thermocouple}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} température
+
+\textbf{Nature du signal délivré~:} Signal électrique & \textbf{Principe
+de fonctionnement}
+
+Un thermocouple est constitué de deux fils de matériaux différents
+reliés entre eux. Sous l'effet d'un changement de température, on mesure
+peut alors mesurer une différence de potentiel entre les fils. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+&
+\includegraphics[width=1.25282in,height=1.26042in]{media/image48.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Absent dans nos systèmes de laboratoire. & \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-laccuxe9luxe9ration}{%
+\subsubsection{Mesure de
+l'accélération}\label{mesure-de-laccuxe9luxe9ration}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} tension électrique
+
+\textbf{Nature du signal délivré~:} Signal électrique & \textbf{Principe
+de fonctionnement}
+
+Un accéléromètre est un dispositif destiné à mesurer l'accélération. Il
+est typiquement constitué de deux éléments~: une masse et un capteur
+
+L'accéléromètre utilisé est à détection piézoélectrique à compression.
+
+\includegraphics[width=2.50903in,height=1.95903in]{media/image49.png}La
+tension de sortie Vs est proportionnelle à la charge exercée par le
+ressort et la masse sur les disques D. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Exemples :}
+
+Suspension de VTT didactisée.
+
+Les systèmes de grandes diffusion (drone, smartphone) utilisent des
+accéléromètre miniaturisés gravés sur du silicium. On parle de capteur
+MEMS. &
+\includegraphics[width=1.89219in,height=1.25917in]{media/image50.png} \\
+\midrule
+\endhead
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{les-capteurs-numuxe9riques}{%
+\subsection{Les capteurs numériques}\label{les-capteurs-numuxe9riques}}
+
+Ces capteurs permettent de mesurer une grandeur physique. Ils délivrent
+un signal échantillonné.
+
+\hypertarget{mesure-de-position-et-de-vitesse-codeur-incruxe9mental}{%
+\subsubsection{Mesure de position (et de vitesse) -- Codeur
+incrémental}\label{mesure-de-position-et-de-vitesse-codeur-incruxe9mental}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:} Signal électrique &
+\begin{minipage}[b]{\linewidth}\raggedright
+\includegraphics[width=1.54167in,height=1.51667in]{media/image51.png}\textbf{Principe
+de fonctionnement}
+
+Un codeur absolu est composé d'un disque comportant~:
+
+\begin{itemize}
+\item
+  \begin{quote}
+  une piste composée de fentes espacés régulièrements sur sa
+  périphérie~;
+  \end{quote}
+\item
+  \begin{quote}
+  une seconde piste composée d'une seule fente permettant de faire une
+  remise à zéro~;
+  \end{quote}
+\item
+  \begin{quote}
+  3 couples diode/photorésistances (ou technologie équivalente)~:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    \includegraphics[width=2.18333in,height=1.15417in]{media/image52.png}deux
+    repérant les fentes sur la périphérie (décalées d'un quart de
+    fente)~;
+    \end{quote}
+  \item
+    \begin{quote}
+    une repérant la fente de la seconde piste.
+    \end{quote}
+  \end{itemize}
+\end{itemize}
+
+En détectant les fentes sur la piste extérieure, il est possible de
+détecter la position angulaire et le sens de rotation.
+
+La piste intérieure facultative permet d'identifier une référence.
+\end{minipage} \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+& \includegraphics[width=1.67857in,height=1.25in]{media/image53.png} \\
+\midrule
+\endhead
+\textbf{Exemples :}
+
+Axe numérique, boîte de vitesse robotisée, axes de déplacement des
+machines-outils\ldots{} La résolution angulaire du capteur dépend du
+nombre de fentes~: \(\frac{360{^\circ}}{n}\). & \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{mesure-de-position-codeur-absolu}{%
+\subsubsection{Mesure de position -- Codeur
+absolu}\label{mesure-de-position-codeur-absolu}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\textbf{Nature de la grandeur détectée~:} proximité
+
+\textbf{Nature du signal délivré~:} Signal électrique
+
+\textbf{Symbole~:} & \textbf{Principe de fonctionnement}
+
+\includegraphics[width=1.66667in,height=1.16458in]{media/image54.png}Un
+codeur absolu est composé d'un disque de \(n\) pistes. Les pistes
+présentes des fentes ou de la matière disposées selon le codage gray
+(binaire réfléchi). Une photorésistance permet d'identifier une séquence
+de fentes et. Cette séquence correspond à la position angulaire du
+disque. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\textbf{Exemples :}
+
+Installation de sureté ou la mise hors tension ne doit pas entrainer une
+prise d'origine \emph{Réacteur nucléaire} &
+\includegraphics[width=2.14693in,height=1.375in]{media/image55.png} &
+\includegraphics[width=1.25023in,height=1.07292in]{media/image56.png} \\
+\midrule
+\endhead
+& & \\
+\bottomrule
+\end{longtable}
+\end{minipage} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{capteurs-intelligents}{%
+\subsection{Capteurs intelligents}\label{capteurs-intelligents}}
+
+Ces capteurs modernes profitent des progrès de miniaturisation et dans
+le traitement de l'information pour mesurer des grandeurs plus
+efficacement.
+
+\hypertarget{capteur-de-champ-magnuxe9tique-et-dangle-de-rotation-uxe0-effet-hall}{%
+\subsubsection{Capteur de champ magnétique et d'angle de rotation à
+effet
+Hall}\label{capteur-de-champ-magnuxe9tique-et-dangle-de-rotation-uxe0-effet-hall}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.60208in,height=2.49792in]{media/image57.jpeg} &
+Une grille de capteurs à effet Hall est utilisée afin de mesurer
+l'orientation et l'intensité d'un champ magnétique. Ils peuvent ainsi
+servir de boussole 3D. Associé à un aimant ils permettent de mesurer
+avec précision et de manière absolue un angle sans contact.
+
+\emph{Exemple~boussole : Drone}
+
+\emph{Exemple mesure d'angle~: Cheville du robot NAO.}
+
+Une unité de traitement de l'information est intégrée pour conditionner
+et traiter l'information des sous-capteurs de la grille et fournir des
+données facilement exploitables. Ces capteurs sont miniaturisés et
+mesurent quelque mm². \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{gyroscopegyromuxe8tre-numuxe9rique}{%
+\subsubsection{Gyroscope/gyromètre
+numérique}\label{gyroscopegyromuxe8tre-numuxe9rique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.69514in,height=2.02222in]{media/image58.jpeg} &
+Ces capteurs miniaturisés MEMS permettent de mesurer des vitesses de
+rotation sans contact avec la référence (repère galiléen), ce qui est
+indispensable pour les véhicules par exemple. Un barreau oscille à
+grande vitesse, lorsque le support tourne les effets d'inertie génèrent
+des forces proportionnelles à la vitesse de rotation. Ainsi mesure ces
+forces permet d'obtenir une image de cette vitesse.
+
+Il existe aussi des modèles plus traditionnels qui utilisent un disque
+tournant à grande vitesse dont les angle restent fixe par effet
+d'inertie. Ces modèles présentent l'avantage de pouvoir mesurer
+directement les angles et non les vitesses de rotation. Ils présentent
+l'inconvénient d'être beaucoup plus onéreux et emcombrant. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{capteur-dattitude-centrale-inertielle-motion-processing-unit.}{%
+\subsubsection{\texorpdfstring{Capteur d'attitude / centrale inertielle
+/ M\emph{otion Processing
+Unit.}}{Capteur d'attitude / centrale inertielle / Motion Processing Unit.}}\label{capteur-dattitude-centrale-inertielle-motion-processing-unit.}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.00823in,height=1.43494in]{media/image59.png} &
+En combinant les capteurs miniaturisés MEMS \emph{gyroscope,
+accéléromètre} et \emph{boussole} il est possible d'obtenir les angles
+d'orientation dans l'espace d'un objet sans système de mesure associé à
+la référence (caméra\ldots) et sans contact.
+
+L'accéléromètre mesure en permanence l'accélération verticale, ce qui
+donne, en moyenne une orientation fiable de l'axe vertical.
+
+La boussole donne en moyenne une bonne direction du nord magnétique,
+permettant de s'orienter dans le plan horizontal.
+
+Le gyroscope numérique donne de bonnes mesures instantanées des angles
+et des vitesses de rotation, en général sa dérive empêche une mesure
+d'angle fiable dans le temps.
+
+Par combinaison des informations de ces 3 capteurs, par exemple avec les
+filtres de Kalmann, on peut obtenir une information rapide et fiable de
+l'attitude (angles dans l'espace) du système. Cette fusion peut être
+gérée localement à l'aide d'une unité de traitement numérique intégrée
+au capteur.
+
+Ces capteurs se trouvent par exemple dans les \textbf{drones}, les
+\textbf{smartphones} et les voitures disposant du contrôle de
+trajectoire ESP. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{autres-capteurs}{%
+\subsection{Autres capteurs}\label{autres-capteurs}}
+
+\hypertarget{capteurs-de-pression}{%
+\subsubsection{Capteurs de pression}\label{capteurs-de-pression}}
+
+Les capteurs de pressions sont de type tout ou rien~ou analogique. En
+général ils fonctionnent par mesure de déformation d'un mécanisme
+sensible à la pression (membrane équipée d'un ressort par exemple).
+
+\begin{itemize}
+\item
+  \begin{quote}
+  Les type TOR permettent de détecter un niveau choisi au préalable.
+  \emph{Exemple~:} Détection de perte de pression d'huile dans un moteur
+  automobile (voyant rouge en forme de burette d'huile).
+  \end{quote}
+\item
+  \begin{quote}
+  Les modèles analogiques permettent une mesure de la pression.
+  \end{quote}
+\end{itemize}
+
+\hypertarget{capteur-de-duxe9bit}{%
+\subsubsection{Capteur de débit}\label{capteur-de-duxe9bit}}
+
+Les capteurs de débit permettent de mesure un débit de fluide, ils
+peuvent utiliser un contact physique (hélice, pale) ou un système sans
+contact (ultrason par exemple).
+
+\hypertarget{capteurs-uxe0-ultrason-sonar-sg}{%
+\subsubsection{Capteurs à ultrason / sonar
+(SG)}\label{capteurs-uxe0-ultrason-sonar-sg}}
+
+Les capteurs émettent un son et mesure son temps de
+propagation/réflexion pour mesurer une distance à un objet, exemple~:
+Aspirateur robot.
+
+\hypertarget{ruxe9solveur-sg}{%
+\subsubsection{Résolveur (SG)}\label{ruxe9solveur-sg}}
+
+Ce sont des capteurs d'angles absolu par mesure du champ
+électromagnétique par induction dans 2 bobines orientées à 90°.
+
+\hypertarget{lidar}{%
+\subsubsection{LIDAR}\label{lidar}}
+
+Ces capteurs utilisent des lasers afin de mesurer des distances. En
+disposant le laser sur une tourelle il est possible de cartographier un
+environnement (scanner laser).
+
+\hypertarget{traitement-de-linformation}{%
+\section{Traitement de l'information}\label{traitement-de-linformation}}
+
+Lorsque l'information est acquise dans un système, l'unité de traitement
+réalise plusieurs opérations.
+
+\begin{itemize}
+\item
+  Conversion analogique -- numérique~(CAN):
+
+  \begin{itemize}
+  \item
+    échantillonnage~: cette opération consiste en un prélèvement de
+    l'information à intervalle régulier.~;
+  \item
+    blocage~: pendant que le signal est converti, l'entrée est bloquée
+    en l'état~;
+  \item
+    codage~: la valeur est codée en une information booléenne ou en
+    information numérique. Suivant l'unité de traitement, le codage est
+    limité à un certain nombre de bits, influant ainsi sur la valeur
+    stockée.
+  \end{itemize}
+\item
+  Stockage~: une fois numérisée l'information est stockée en mémoire
+  (mémoire flash, RAM, disque-dur\ldots)
+\item
+  Traitement~: l'information peut alors être traitée à proprement parlé.
+  Suivant les valeurs mesurées, l'unité de traitement pour alors
+  modifier le comportement de la chaîne d'énergie.
+\end{itemize}
+
+Ces opérations vont être réalisées par un microcontrôleur ou un
+microprocesseur. Ces composants sont programmables.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\textbf{Exemples~de logiciels permettant de programmer des unités de
+traitement}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Programmation par un langage «~écrit~»} &
+\includegraphics[width=0.79028in,height=0.95556in]{media/image60.png}\includegraphics[width=1.11628in,height=0.31425in]{media/image61.png}
+\includegraphics[width=0.69767in,height=0.47471in]{media/image62.png} \\
+\midrule
+\endhead
+\textbf{Programmation par langage graphique} &
+\includegraphics[width=1.68835in,height=0.47674in]{media/image63.png}\includegraphics[width=1.0406in,height=0.27907in]{media/image64.png} \\
+\textbf{Programmation par diagramme d'état, programmation par schéma
+bloc} &
+\includegraphics[width=1.69767in,height=0.51995in]{media/image65.png} \\
+\textbf{Programmation par logigramme~: ISP Lever -- Lattice
+Semiconductor} &
+\includegraphics[width=1.73256in,height=0.59569in]{media/image66.png} \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+Un cours séparé couvre les principes et la modélisation des systèmes de
+traitement de l'information.
+
+\hypertarget{automate-programmables-industriels-api}{%
+\subsection{Automate programmables industriels
+(API)}\label{automate-programmables-industriels-api}}
+
+Dans les systèmes industriels, le traitement de l'information est
+réalisé par un automate programmable industriel. Il s'agit d'un système
+électrique équipé d'entrées permettant de mesurer les états de capteurs
+ou de détecteurs et de sorties permettant de piloter des modulateurs
+d'énergie (relais électriques, distributeurs pneumatiques etc\ldots)
+
+Le lien entre les entrées et les sorties se fait au moyen d'un programme
+(programme graphique, codage\ldots.).
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\textbf{Exemples~de logiciels permettant de programmer des unités de
+traitement}
+
+Automate de la capsuleuse de bocaux
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\includegraphics[width=3.50387in,height=1.35887in]{media/image67.png} &
+\includegraphics[width=3.03488in,height=1.7789in]{media/image68.png} \\
+\midrule
+\endhead
+\emph{\textbf{Automate TSX 17}} & \emph{\textbf{Représentation
+schématique des entrées et sorties}} \\
+& \\
+\bottomrule
+\end{longtable}
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{cartes-programmables-carte-arduino}{%
+\subsection{Cartes programmables -- Carte
+Arduino}\label{cartes-programmables-carte-arduino}}
+
+Les caractéristiques de la carte Arduino UNO sont les suivantes~:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  \begin{quote}
+  Mémoire et microcontrôleur~:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    Microcontrôleur ATmega328 cadencé à 16 MHz
+    \end{quote}
+  \item
+    \begin{quote}
+    Mémoire Flash 32ko (dont 0,5 ko pour le système d'amorçage)
+    \end{quote}
+  \item
+    \begin{quote}
+    SRAM~: 2ko
+    \end{quote}
+  \item
+    \begin{quote}
+    EEPROM 1ko
+    \end{quote}
+  \end{itemize}
+\item
+  \begin{quote}
+  Entrées sorties numériques
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    14 dont 6 en MLI (PWM) indiquées \textasciitilde{} (40mA).
+    \end{quote}
+  \item
+    \begin{quote}
+    Ports Tx et Rx~: reprise du port série
+    \end{quote}
+  \end{itemize}
+\end{itemize}
+\end{minipage} & \begin{minipage}[t]{\linewidth}\raggedright
+\begin{itemize}
+\item
+  \begin{quote}
+  Alimentation~:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    Alimentation par le port USB~: 5V, 500mA
+    \end{quote}
+  \item
+    \begin{quote}
+    Alimentation externe en 7 à 12 V (2,1 mm)
+    \end{quote}
+  \item
+    \begin{quote}
+    Reprise de l'alimentation externe
+    \end{quote}
+  \item
+    \begin{quote}
+    Alimentation externe régulée en 5V/500mA et 3,3 V/50mA.
+    \end{quote}
+  \end{itemize}
+\item
+  \begin{quote}
+  Entrées analogiques~:
+  \end{quote}
+
+  \begin{itemize}
+  \item
+    \begin{quote}
+    5 entrées analogiques
+    \end{quote}
+  \end{itemize}
+\end{itemize}
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\includegraphics[width=4.89535in,height=2.8114in]{media/image69.png}
+
+\hypertarget{traitement-avec-cuxe2blage-uxe9lectrique-pneumatique-et-hydraulique}{%
+\subsubsection{Traitement avec câblage électrique, pneumatique et
+hydraulique}\label{traitement-avec-cuxe2blage-uxe9lectrique-pneumatique-et-hydraulique}}
+
+En utilisant des pré actionneurs électriques, pneumatiques ou
+hydrauliques il est possible de réaliser un traitement des informations
+en «~logique câblée~». Ce type de traitement est couteux et fastidieux
+et on le réserve en général pour des prises de décision simple liées à
+la sécurité \emph{Par exemple déclenchement d'une interruption de
+production en cas de détection d'incendie.}
+
+\hypertarget{traitement-avec-un-automate-logique}{%
+\subsubsection{Traitement avec un automate
+logique}\label{traitement-avec-un-automate-logique}}
+
+Plus simple que les automates programmables industriels ces automates ne
+disposent pas de mémoire. Ils peuvent servir pour une installation
+simple et peu couteuse ou traiter uniquement un aspect de sécurité de
+l'installation par exemple.
+
+\hypertarget{traitement-avec-un-fpga}{%
+\subsubsection{Traitement avec un FPGA}\label{traitement-avec-un-fpga}}
+
+Les FPGA sont des puces électroniques dont l'aspect est proche des
+microcontrôleurs. A la différence de ceux-ci leur circuit interne sont
+modifiables par une interface PC. Les connexions entre les transistors
+peuvent être reconfigurées afin d'obtenir le traitement souhaité. Cela
+permet de développer des traitements de l'information performants
+adaptés à une application particulière, ou un logiciel embarqué exécuté
+sur microcontrôleur ne se montrerait pas suffisamment réactif. Les FPGA
+sont particulièrement adapté aux petites séries ne permettant pas une
+mise en production de puce spécifique (ASIC). \emph{Exemple~: Guidage de
+fusée}
+
+\hypertarget{traitement-avec-un-digital-signal-processor-dsp}{%
+\subsubsection{Traitement avec un Digital Signal Processor
+DSP}\label{traitement-avec-un-digital-signal-processor-dsp}}
+
+Pour traiter un flux d'information massif en temps réel comme un signal
+audio un microcontrôleur n'est pas adapté. Le volume d'information à
+traiter en peu de temps est trop important. Des puces DSP dédiées sont
+alors utilisées.
+
+\hypertarget{fonction-convertir}{%
+\section{Fonction Convertir}\label{fonction-convertir}}
+
+Tous les systèmes physiques ont au moins besoin d'un actionneur pour
+agir sur la matière d'œuvre, cet actionneur ne crée pas d'énergie du
+néant, il convertit une source d'énergie primaire en énergie adaptée à
+l'action souhaitée. Dans le laboratoire les actionneurs seront souvent
+des moteurs électriques car cette énergie est directement disponible.
+
+\hypertarget{les-moteurs-uxe9lectriques}{%
+\subsection{Les moteurs électriques}\label{les-moteurs-uxe9lectriques}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.91947in,height=2.25279in]{media/image70.jpeg} &
+Le moteur électrique est constitué d'aimants et de fils enroulés. Il se
+base sur la force de Laplace : tout conducteur parcouru par un courant
+et plongé dans un champ magnétique reçoit une force, la force de
+Laplace, proportionnelle à l'intensité du courant et du champ
+magnétique.
+
+Un système particulier permet de faire varier tourner le champ
+magnétique afin de générer une force de Laplace motrice pour le
+mouvement de rotation.
+
+Les moteurs électriques sont des machines réversibles, il est possible
+de les faire tourner avec un dispositif mécanique pour récupérer une
+énergie électrique. On parle de fonctionnement en génératrice. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{le-moteur-uxe0-courant-continu}{%
+\subsubsection{Le moteur à courant
+continu}\label{le-moteur-uxe0-courant-continu}}
+
+Les aimants sont liés au stator (partie fixe) et les bobines qui génère
+le champ tournant sont liées au rotor. Un dispositif mécanique, les
+balais, permettent de faire tourner le champ électrique pour qu'il soit
+toujours moteur. Une source de tension continue est suffisante et ce
+moteur dispose donc de 2 fil pour l'apport en énergie. Des capteurs
+optionnels peuvent augmenter le nombre de connexions.
+
+La modélisation de cet actionneur est détaillée dans un cours. On
+observe une proportionnalité du courant avec le couple délivré
+(constante de couple Ki) et une proportionnalité de la tension de~force
+contre électro motrice~à la vitesse de rotation (constante Ke).
+Lorsqu'elles sont exprimées dans un même système d'unité ces constantes
+sont proches ou égales.
+
+\hypertarget{le-moteur-brushless-sans-broches}{%
+\subsubsection{Le moteur brushless (sans
+broches)}\label{le-moteur-brushless-sans-broches}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=3.79554in,height=2.84745in]{media/image71.jpeg} &
+Ce moteur ne dispose pas de dispositif mécanique permettant de faire
+tourner le champ. Les aimants sont liés au rotor et 3 connexions
+permettent d'alimenter 3 paires de poles (bobines) distinctes. En
+alimentant la bonne paire de pole par rapport à la position du rotor
+(aimant) le moteur génère un couple positif (il fonctionne).
+
+Afin de choisir la bonne paire de pole il est nécessaire de connaitre la
+position du rotor. Un capteur ou des techniques mesurant les courant
+d'induction dans les phases permettent de connaitre cette position afin
+de piloter le moteur.
+
+\emph{Voir variateur, section «~moduler~»} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{le-moteur-asynchrone}{%
+\subsubsection{Le moteur asynchrone}\label{le-moteur-asynchrone}}
+
+Ce type de moteur utilise un champ magnétique dont la vitesse de
+rotation n'est pas synchronisée avec la vitesse de rotation. On parle de
+glissement. Cette machine est souvent privilégiée notamment pour les
+fortes puissances (ferroviaire).
+
+Comme le moteur brushless une électronique de puissance sophistiquée est
+nécessaire pour un pilotage performant. Une connexion à un courant
+alternatif permettra cependant de la faire tourner sans pilotage.
+
+\hypertarget{le-moteur-pas-uxe0-pas}{%
+\subsubsection{Le moteur pas à pas}\label{le-moteur-pas-uxe0-pas}}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+\includegraphics[width=2.0855in,height=2.0855in]{media/image72.png} &
+\includegraphics[width=1.875in,height=1.90625in]{media/image73.png} & Ce
+moteur est proche dans son architecture du moteur brushless. Il y a en
+plus de poles. Les performances (puissance massique, puissance totale,
+efficacité énergétique) sont plus faibles mais le couple est important
+ce qui permet de ne pas utiliser de réducteur pour de nombreuses
+applications. Aussi chaque pas représente un petit incrément angulaire
+ce qui est intéressant pour des activités de précision (pilotage d'un
+téléscope de hobbysite, imprimante 3D). \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{actionneurs-linuxe9aires}{%
+\subsubsection{Actionneurs linéaires}\label{actionneurs-linuxe9aires}}
+
+Il est possible de faire translater un aimant en le soumettant à un
+champ magnétique afin de créer un actionneur linéaire. Ces actionneurs
+sont rapides mais l'amplitude possible et la force générées sont en
+général limitée. \emph{Exemple~:} prototype d'actionneur de soupapes
+pour moteurs sans distribution, prototype de suspensions intelligentes.
+
+La plupart des vérins électrique utilisent en revanche un moteur
+électrique tournant associé à un ensemble vis-écrou
+
+\hypertarget{convertisseurs-duxe9nergie-pneumatique-ou-hydraulique}{%
+\subsection{Convertisseurs d'énergie pneumatique ou
+hydraulique}\label{convertisseurs-duxe9nergie-pneumatique-ou-hydraulique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+Un vérin est un actionneur utilisant de l'énergie pneumatique ou
+hydraulique pour produire une énergie mécanique lors d'un déplacement
+linéaire ou rotatif limité à sa course. Le vérin permet de convertir de
+l'énergie pneumatique (ou hydraulique) en énergie mécanique.
+
+\includegraphics[width=2.9994in,height=0.52326in]{media/image74.png}
+
+Dans les deux cas le produit des deux valeurs donne une puissance, la
+puissance \(\mathbf{P \cdot Q}\) pneumatique étant convertie en
+puissance \(\mathbf{F \cdot V}\) mécanique. Il est à noter que le
+rendement de ces actionneurs est mauvais (\(\eta = 0,5\) environ) : une
+grande partie de l'énergie est perdue sous forme d'énergie calorifique
+et lors de la mise à l'échappement de l'air comprimé. En prenant en
+compte le rendement du compresseur (\(\eta = 0,4\)), on obtient un
+rendement global très faible pour la chaîne d'action pneumatique
+(\(\eta = 0,2\)). &
+\includegraphics[width=1.60465in,height=1.07872in]{media/image75.png}
+
+\includegraphics[width=2.54651in,height=1.82389in]{media/image76.png} \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\includegraphics[width=2.18753in,height=0.78785in]{media/image77.png} &
+\includegraphics[width=1.94972in,height=0.85305in]{media/image78.png} &
+\includegraphics[width=1.95945in,height=0.94776in]{media/image79.png} \\
+\midrule
+\endhead
+\includegraphics[width=0.7365in,height=0.38835in]{media/image80.png} &
+\includegraphics[width=0.68657in,height=0.4208in]{media/image81.png} &
+\includegraphics[width=0.83815in,height=0.50289in]{media/image82.png} \\
+\emph{\textbf{Vérin linéaire simple effet}} & \emph{\textbf{Vérin
+linéaire double effet}} & \emph{\textbf{Vérin rotatif double effet}} \\
+\bottomrule
+\end{longtable}
+
+\textbf{La force} délivrée par un vérin est donnée par \(F = PS\) avec
+\(F\) la force en newtons, \(S\) la section du vérin en m² et \(P\) la
+pression en Pascals.
+
+\textbf{Le débit volumique} est donné par \(Q = VS\) avec \(Q\) en
+m.\textsuperscript{3}s\textsuperscript{-1} et \(V\) la vitesse de
+déplacement du vérin en m.s\textsuperscript{-1}.
+
+\textbf{La cylindrée} est donnée par \(C = S\ c\) avec \(S\) en m² et
+\emph{c}, la course en m.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=1.42708in,height=0.71875in]{media/image83.png} &
+On note D le diamètre du vérin et d le diamètre de la tige.
+
+Dans la chambre de gauche l'effort est donné par
+\(F_{g} = p_{g}\frac{\pi D^{2}}{4}\).
+
+Dans la chambre de droite l'effort est donné par
+\(F_{d} = p_{g}\frac{\pi\left( D^{2} - d^{2} \right)}{4}\). \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{moteurs-thermiques}{%
+\subsection{Moteurs thermiques}\label{moteurs-thermiques}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=2.79532in,height=3.1643in]{media/image84.jpeg} &
+Les moteurs thermiques permettent de récupérer une énergie mécanique, en
+général en rotation, à partir d'une source d'énergie chimique. La
+combustion peut être externe comme dans une machine à vapeur. Dans un
+moteur traditionnel (auto bateau\ldots) ou dans une turbine, un
+réacteur, la combustion est interne. Un dispositif mécanique (système
+bielle manivelle, ailettes) permet la récupération de l'énergie
+mécanique emmagasiné sous forme de pression lors de la combustion. Les
+combustions internes sont généralement préférées car elles diminuent les
+pertes par échange thermique. Pour aller plus loin~: moteur 4 temps/
+moteur 2 temps, cycle Diesel, cycle Beau de Rochas/Otto, moteur rotatif,
+distribution. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{fonction-transmettre}{%
+\section{Fonction Transmettre}\label{fonction-transmettre}}
+
+\hypertarget{eluxe9ments-de-liaisons}{%
+\subsection{Eléments de liaisons}\label{eluxe9ments-de-liaisons}}
+
+Transmission d'une énergie en rotation.
+
+\includegraphics[width=6.88958in,height=2.02437in]{media/image85.png}
+
+\hypertarget{transmission-par-engrenages}{%
+\subsection{Transmission par
+engrenages}\label{transmission-par-engrenages}}
+
+\hypertarget{engrenage-uxe0-contact-extuxe9rieur}{%
+\subsubsection{Engrenage à contact
+extérieur}\label{engrenage-uxe0-contact-extuxe9rieur}}
+
+En considérant deux roues dentées \(a\) et \(b\) de nombre de dents
+respectifs \(Z_{a}\) et \(Z_{b}\), on trouve~:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+La relations des vitesses~:
+\end{quote}
+
+\[\boxed{\frac{\omega_{a}}{\omega_{b}} = - \frac{Z_{b}}{Z_{a}}}\]
+
+\begin{quote}
+La relation sur les couples~\(
+\)(frottements négligés) :
+\end{quote}
+
+\[\boxed{\frac{C_{a}}{C_{b}} = - \frac{Z_{a}}{Z_{b}}}\]
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{engrenage-uxe0-contact-intuxe9rieur}{%
+\subsubsection{Engrenage à contact
+intérieur}\label{engrenage-uxe0-contact-intuxe9rieur}}
+
+En considérant deux roues dentées \(a\) et \(b\) de nombre de dents
+respectifs \(Z_{a}\) et \(Z_{b}\), on trouve~:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+La relations des vitesses~:
+\end{quote}
+
+\[\boxed{\frac{\omega_{a}}{\omega_{b}} = \frac{Z_{b}}{Z_{a}}}\]
+
+\begin{quote}
+La relation sur les couples~\(
+\)(frottements négligés) :
+\end{quote}
+
+\[\boxed{\frac{C_{a}}{C_{b}} = \frac{Z_{a}}{Z_{b}}}\]
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{roues-et-vis-sans-fin}{%
+\subsubsection{Roues et vis sans fin}\label{roues-et-vis-sans-fin}}
+
+\includegraphics[width=6.88958in,height=1.65739in]{media/image89.png}
+
+\hypertarget{renvoi-dangle}{%
+\subsubsection{Renvoi d'angle~:}\label{renvoi-dangle}}
+
+\includegraphics[width=6.88958in,height=1.62394in]{media/image90.png}
+
+\hypertarget{transmission-par-courroies-et-chaines}{%
+\subsection{Transmission par courroies et
+chaines}\label{transmission-par-courroies-et-chaines}}
+
+\includegraphics[width=2.38958in,height=1.22917in]{media/image92.jpeg}Le
+nombre de dents étant proportionnel au rayon, on trouve~:
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+& \begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+La relations des vitesses~:
+\end{quote}
+
+\[\boxed{\frac{\omega_{a}}{\omega_{b}} = \frac{Z_{b}}{Z_{a}} = \frac{R_{b}}{R_{a}}}\]
+
+\begin{quote}
+La relation sur les couples~\(
+\)(frottements négligés) :
+\end{quote}
+
+\[\boxed{\frac{C_{a}}{C_{b}} = \frac{Z_{a}}{Z_{b}} = \frac{R_{a}}{R_{b}}}\]
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{boites-de-vitesse}{%
+\subsection{Boites de vitesse}\label{boites-de-vitesse}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=2.83342in,height=1.75in]{media/image93.jpeg} & La
+boite de vitesse permet d'obtenir plusieurs rapports de réduction
+distinct ce qui est pratique lorsque les vitesses de sortie et de
+l'actionneur/convertisseur sont susceptible de varier avec beaucoup
+d'amplitude. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{convertisseurs-multiples}{%
+\subsection{Convertisseurs multiples}\label{convertisseurs-multiples}}
+
+Des techniques utilisant plusieurs conversions permettent d'obtenir des
+transmissions sophistiquées. Dans certains contextes il faudra faire
+attention à ne pas trop dégrader l'efficacité car chaque conversion
+d'énergie ajoute des pertes.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=2.60486in,height=1.94792in]{media/image94.jpeg} &
+L'association d'une pompe réglable et d'un moteur hydraulique permettent
+d'obtenir une transmission continument variable dans la transmission
+pour moto Honda HFT. \\
+\bottomrule
+\end{longtable}
+
+Dans les locomotives diesel et les navires utilisant des PODs de
+propulsion une génératrice électrique est associé au moteur thermique
+afin d'alimenter le moteur électrique de propulsion. On parle aussi
+«~d'hybride série~». Pour les navire cela permet de supprimer la ligne
+d'arbre qui est nuisible pour le rendement hydrodynamique. Poru les
+locomotive cela permet d'obtenir le fonctionnement souple important pour
+le transport de passer et la transmission sur rail.
+
+\hypertarget{fonction-modulercommuter}{%
+\section{Fonction moduler/commuter}\label{fonction-modulercommuter}}
+
+\hypertarget{introduction}{%
+\subsection{Introduction}\label{introduction}}
+
+Dans la chaîne fonctionnelle, le modulateur d'énergie (ou distributeur
+d'énergie ou pré actionneurs) est le composant qui fait le lien entre la
+chaîne d'information et la chaîne d'énergie. Ainsi, à partir d'une
+faible puissance énergétique provenant de la fonction «~Traiter~» (l'API
+ou la carte de commande), il peut faire transiter une grande puissance
+(provenant de la fonction «~Alimenter~» ou «~Stocker~».
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Tout ou rien -- Variateur}
+
+Les distributeurs «~tout ou rien~» permettent d'envoyer toute l'énergie
+de l'alimentation vers le convertisseur.
+
+Les distributeurs de type «~variateur~» permettent de moduler l'énergie
+envoyée au convertisseur. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Exemples :}
+
+Un interrupteur de lumière peut être considéré comme un distributeur
+tout ou rien.
+
+Le variateur d'une lampe halogène peut être considéré comme un \ldots{}
+variateur. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Monostable -- Bistable}
+
+Un pré-actionneur est dit monostable s'il a besoin d'un ordre pour le
+faire passer de sa position de repos à sa position de travail et que le
+retour à sa position de repos s'effectue automatiquement lorsque l'ordre
+disparait : \textbf{il n'est stable que dans une seule position}.
+
+Un pré-actionneur est dit bistable s'il a besoin d'un ordre pour passer
+de sa position repos à sa position travail et qu'il reste en position
+travail à la disparition de cet ordre. Il ne peut revenir à sa position
+repos que s'il reçoit un second ordre : \textbf{il est stable dans les
+deux positions}. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Exemple~:}
+
+Un interrupteur de lumière peut être considéré comme un distributeur
+bistable. Il faut appuyer dessus pour allumer une lumière et appuyer une
+seconde fois pour l'éteindre. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{les-modulateurs-uxe9lectriques}{%
+\subsection{Les modulateurs
+électriques}\label{les-modulateurs-uxe9lectriques}}
+
+\hypertarget{le-relai-ou-contacteur-de-puissance}{%
+\subsubsection{Le relai (ou contacteur de
+puissance)}\label{le-relai-ou-contacteur-de-puissance}}
+
+Le relai est un dispositif électrique permettant de commander un circuit
+de commande ou un circuit de puissance.
+
+Le circuit secondaire alimente la partie que l'on veut commander.
+Lorsque la bobine est alimentée le levier pivote provoquant la fermeture
+du contact. Certains relais peuvent aussi être actionnés manuellement.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.21388in,height=1.59525in]{media/image95.png} &
+\includegraphics[width=2.34736in,height=1.69567in]{media/image96.png} &
+\includegraphics[width=2.4015in,height=1.7093in]{media/image97.png} \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.33}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Contacteur électrique monostable}
+\end{quote}
+\end{minipage} & & Quand la bobine reçoit un ordre de marche (appui sur
+le bouton poussoir) la bobine est alimentée par un courant, créant ainsi
+un champ magnétique. Le champ magnétique créé dans la bobine provoque le
+déplacement du noyau de fer doux vers le haut. Le contact de puissance
+est alors fermé.
+
+Le moteur est alimenté puis mis en rotation.
+
+Quand l'ordre de marche est interrompu (bouton relâché), le circuit de
+commande est ouvert. La bobine n'est plus alimentée et le ressort de
+rappel fait redescendre le noyau de fer doux.
+
+Le circuit de puissance s'ouvre et le moteur n'est plus alimenté.
+
+Ce contacteur est monostable car il alimente en énergie électrique le
+moteur tant que l'ordre est maintenu. \\
+\midrule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\begin{quote}
+\textbf{Contacteur électrique bistable}
+\end{quote}
+\end{minipage} &
+\includegraphics[width=3.07395in,height=3.0597in]{media/image99.jpeg} &
+Ce contacteur est bistable : il faut un ordre (court) pour que le moteur
+soit alimenté. Le moteur continue à être alimenté même quand l'ordre de
+marche a disparu. Il faut un ordre d'arrêt (court) pour que le moteur ne
+soit plus alimenté. \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\textbf{Symbolisation des contacts}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\endhead
+\includegraphics[width=0.79201in,height=0.7874in]{media/image100.png} &
+\includegraphics[width=0.76541in,height=0.7874in]{media/image101.png} &
+\includegraphics[width=1.36856in,height=0.98425in]{media/image102.png} \\
+\bottomrule
+\end{longtable}
+\end{minipage} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{le-hacheur-convertisseur-statique}{%
+\subsubsection{Le hacheur (convertisseur
+statique)}\label{le-hacheur-convertisseur-statique}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.0486in,height=1.82318in]{media/image103.png} &
+Lorsqu'on souhaite contrôler la fréquence de rotation d'un moteur à
+courant continu ou moduler la puissance électrique s'appliquant sur une
+charge, il est nécessaire de moduler sa tension d'alimentation. On
+pourrait pour cela utiliser un pont diviseur, mais cette technologie
+serait très énergivore à cause des pertes joules qui apparaitraient dans
+les résistances. Historiquement des transistors linéaires étaient
+utilisés mais ils sont couteux et peu fiables. On utilise désormais un
+hacheur.
+
+Un hacheur est composé de transistors «~tout ou rien~» utilisant la
+technologie «~MOSFET~». Cette technologie permet de commuter (laisser
+passer ou non) des courants importants avec une bonne fiabilité, un bon
+rendement et une rapidité de commutation bien supérieure au relai. Une
+bonne coordination de l'ouverture et de la fermeture de ces
+interrupteurs permet de générer une tension ayant une forme de créneau
+où les temps à l'état bas et à l'état haut sont réglables. \\
+\bottomrule
+\end{longtable}
+
+Le hacheur est caractérisé par sa période de hachage (980 Hz pour une
+carte Arduino Leonardo), ainsi que par le rapport cyclique (variable),
+définit par le pourcentage de la période passé à l'état haut. Il envoie
+ainsi un signal appelé MLI (Modulation de Largeur d'Impulsion) ou PWM
+(Pulse Width Modulation).
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\includegraphics[width=2.13954in,height=1.17904in]{media/image104.png} &
+\includegraphics[width=2.17793in,height=1.56693in]{media/image105.png} &
+\includegraphics[width=2.82292in,height=1.93958in]{media/image106.png} \\
+\midrule
+\endhead
+\emph{Modèle simplifié du pilotage d'un moteur électrique à courant
+continu} & \emph{Schéma proche du câblage réel. L'interrupteur K est
+commandé par le signal MLI} & \emph{Signal MLI avec 3 rapport cycliques
+distincts} \\
+\bottomrule
+\end{longtable}
+
+Dans le cas précédent, si le moteur est alimenté par un créneau valant
+24 V 25\% du temps. Il est donc alimenté en 6 V en moyenne.
+
+\hypertarget{londuleur-variateur}{%
+\subsubsection{L'onduleur (variateur)}\label{londuleur-variateur}}
+
+Les moteurs triphasés sont physiquement alimentés par 3 fils. La tension
+est sinusoïdale et décalée dans chacun d'entre eux d'un tiers de
+période. Afin de générer un signal sinusoïdal de fréquence et
+d'amplitude voulue on a recours à un onduleur.
+
+Pour cela, en règle générale, on redresse la tension issue de
+l'alimentation du secteur puis on régénère un signal avec l'onduleur.
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=3.95349in,height=0.98369in]{media/image107.png} &
+\includegraphics[width=2.39535in,height=0.89582in]{media/image108.png} \\
+\bottomrule
+\end{longtable}
+
+Le variateur est une forme d'onduleur qui permet de piloter avec
+précision la vitesse ou la position d'un moteur triphasé. Pour cela il
+utilise en général un capteur afin de connaitre la position du rotor et
+alimenter la bonne phase. Certaines technologies peuvent déterminer la
+position du rotor sans capteur en mesurant les effets d'induction dans
+les phases (montée et descente de courant lorsque l'on commute la phase)
+\emph{technologie sensorless}.
+
+\hypertarget{notion-de-schuxe9ma-uxe9lectrique}{%
+\subsubsection{Notion de schéma
+électrique}\label{notion-de-schuxe9ma-uxe9lectrique}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\textbf{Inversion de sens d'un moteur CC.} & \textbf{Inversion de sens
+d'un moteur triphasé asynchrone} \\
+\midrule
+\endhead
+\includegraphics[width=2.98248in,height=1.96512in]{media/image109.png} &
+\includegraphics[width=3.75718in,height=2.13903in]{media/image110.png} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{les-modulateurs-pneumatiques-et-hydrauliques}{%
+\subsection{Les modulateurs pneumatiques et
+hydrauliques}\label{les-modulateurs-pneumatiques-et-hydrauliques}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Définition : Énergie hydraulique et pneumatique}
+
+\textbf{Énergie pneumatique} : le fluide utilisé est de l'air comprimé.
+
+\textbf{Énergie hydraulique} : le fluide utilisé est une huile
+hydraulique minérale ou difficilement inflammable (aqueuse ou non). \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{les-distributeurs}{%
+\subsection{Les distributeurs}\label{les-distributeurs}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+Les distributeurs sont les préactionneurs des vérins pneumatiques et
+hydrauliques.
+
+Ils servent d'«~aiguillages~» en dirigeant le fluide dans certaines
+directions. Les plus utilisés sont les distributeurs à tiroir. &
+\includegraphics[width=1.81782in,height=1.36364in]{media/image111.png} \\
+\midrule
+\endhead
+\includegraphics[width=3.14961in,height=1.88001in]{media/image112.png}
+
+\emph{Vérin simple effet et distributeur 3/2 monostable NF à commande
+manuelle par bouton} &
+\includegraphics[width=3.14961in,height=1.85091in]{media/image113.png}
+
+\emph{Vérin double effet et distributeur 5/2 monostable à commande
+manuelle par bouton} \\
+\includegraphics[width=5.90551in,height=3.9183in]{media/image114.png}
+
+\emph{Vérin double effet à amortissement réglable et distributeur 5/2
+bistable à commande électropneumatique} & \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{duxe9signation-des-distributeurs}{%
+\subsection{Désignation des
+distributeurs}\label{duxe9signation-des-distributeurs}}
+
+Lors de l'élaboration des schémas, il n'est pas possible de représenter
+le distributeur, ainsi que les autres composants, sous leurs formes
+commerciales. De ce fait, l'utilisation de symboles normalisés simplifie
+la lecture et la compréhension des systèmes. Cette représentation
+utilise la symbolisation par cases.
+
+Un distributeur se représente sur les côtés droit et/ou gauche (comme
+dans la réalité) par des pilotages. Ils permettent au tiroir de se
+déplacer afin de mettre en communication les différents orifices.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{1.00}}@{}}
+\toprule
+\endhead
+\textbf{Désignation}
+
+La désignation d'un distributeur permet de mettre en évidence le nombre
+d'orifices du distributeur, le nombre de positions, le type de commande
+et son état (monostable ou bistable). \\
+\bottomrule
+\end{longtable}
+
+\includegraphics[width=5.54274in,height=5.96101in]{media/image115.png}
+
+\includegraphics[width=6.32735in,height=3.84416in]{media/image116.png}
+
+\hypertarget{fonction-stocker}{%
+\section{Fonction stocker}\label{fonction-stocker}}
+
+\hypertarget{piles-et-batteries}{%
+\subsection{Piles et batteries}\label{piles-et-batteries}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=4.375in,height=1.64113in]{media/image117.png} &
+Stockage d'énergie électrique par des techniques chimique. En première
+approximation ces éléments se comportent comme des sources de tension
+parfaite. En revanche lors d'une utilisation trop longue par rapport à
+la capacité ou trop intense par rapport au courant maximum prévu, une
+chute plus ou moins importante de tension peut se produire. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{energies-pneumatiques-et-hydrauliques}{%
+\subsection{Energies pneumatiques et
+hydrauliques}\label{energies-pneumatiques-et-hydrauliques}}
+
+Les énergies pneumatiques et hydrauliques sont obtenues grâce à des
+compresseurs (ou des pompes) actionnés par un moteur électrique ou
+thermique. Dans les systèmes pneumatiques, la circulation d'air se fait
+généralement en circuit ouvert. Dans le cas des systèmes hydrauliques,
+le fluide est en circuit fermé. Cela impose des conditions sur les
+constituants des réseaux. Ces motopompes peuvent constituer un nouveau
+bloc «~alimentation~» en amont de la chaine d'énergie.
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+\includegraphics[width=1.16072in,height=0.74419in]{media/image118.png} &
+\includegraphics[width=0.88343in,height=0.94186in]{media/image120.png} &
+\includegraphics[width=1.04671in,height=0.72385in]{media/image121.png} \\
+\midrule
+\endhead
+\emph{Symbole d'un moteur} & \emph{Symbole d'une pompe à deux sens de
+rotation et deux sens de flux} & \emph{Symbole d'un groupe moteur +
+pompe} \\
+\bottomrule
+\end{longtable}
+
+L'air est en général stocké dans une citerne sous pression qui fait
+office de tampon entre les systèmes et la pompe. L'huile est en général
+stockée à pression atmosphérique dans des réservoirs (parfois appelé
+«~bâche~»). Le tampon entre la pompe et le système est un
+«~accumulateur~hydraulique»~: c'est un réservoir qui contient un gaz
+sous pression d'un coté, l'huile que l'on souhaite conserver sous
+pression de l'autre et une membrane souple entre les deux.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\includegraphics[width=1.23955in,height=1.30233in]{media/image122.png} &
+\includegraphics[width=1.4186in,height=1.24551in]{media/image123.png} &
+\includegraphics[width=2.47917in,height=2.20833in]{media/image124.png} &
+\includegraphics[width=1.03488in,height=0.22687in]{media/image125.png} \\
+\midrule
+\endhead
+& & & \emph{Symbole réservoir} \\
+& & &
+\includegraphics[width=0.45652in,height=1.10368in]{media/image126.png} \\
+\emph{Réservoir de 50 à 25 000 L} & \emph{Compresseur 100 L -- 10 bars}
+& \emph{Accumulateur hydraulique} & \emph{Symbole accumulateur} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{stockage-par-gravituxe9}{%
+\subsection{Stockage par gravité}\label{stockage-par-gravituxe9}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\begin{minipage}[t]{\linewidth}\raggedright
+\includegraphics[width=4.22581in,height=1.43132in]{media/image127.jpeg}
+En plaçant une masse en hauteur on peut récupérer son énergie
+potentielle de pesanteur.
+
+\begin{itemize}
+\item
+  Un barrage hydroélectrique ou une conduite d'eau forcée permet de
+  faire tourner des turbines pour produire de l'électricité.
+\item
+  Un ascenseur dispose d'un contrepoids qui descend pour faciliter
+  l'ascension de la cabine.
+\item
+  Le mouton Charpy (figure de droite) accélère lors de la descente
+  (conversion de l'énergie potentielle de pesanteur en énergie
+  cinétique).
+\end{itemize}
+\end{minipage} &
+\includegraphics[width=2.34003in,height=2.9346in]{media/image128.jpeg} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{stockage-inertiel}{%
+\subsection{Stockage inertiel}\label{stockage-inertiel}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+\endhead
+\includegraphics[width=2.18397in,height=1.45726in]{media/image129.jpeg}
+& Il est possible de stocker de l'énergie sous forme d'énergie cinétique
+en accélérant la vitesse de rotation d'un disque. Le freinage du disque
+permet de la récupérer. Exemple~: Equipe certaines voitures de course
+hybride pour récupérer l'énergie du freinage plus efficacement qu'une
+batterie. Voiturettes à friction.
+
+De manière plus instantanée les volant d'inertie sur les moteurs
+thermique permettent d'assouplir le fonctionnement en lissant la vitesse
+de rotation. Effectivement dans un moteur 4 temps l'énergie est produite
+lors de la détente tandis que les 3 autres phases sont réceptrices
+(aspiration compression échappement). \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{ressorts}{%
+\subsection{Ressorts}\label{ressorts}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.08236in,height=0.91735in]{media/image130.jpeg}\includegraphics[width=1.01438in,height=1.01438in]{media/image131.png}
+& Les ressorts permettent de stocker de petites quantitées d'énergie
+mécanique, par exemple dans une montre mécanique. Il permettent aussi
+d'obtenir une fourniture rapide d'énergie lors de leur détente par
+exemple dans un système d'allumage d'arme a feu. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{energie-thermique}{%
+\subsection{Energie thermique}\label{energie-thermique}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\includegraphics[width=0.53175in,height=1.21236in]{media/image132.jpeg}
+& Pour simplifier la distribution, l'énergie thermique est en général
+stockée dans des fluides, comme de l'eau dans les systèmes de chauffage
+de maison. De l'huile est aussi fréquemment utilisée pour véhiculer les
+calories dans un système (moteur thermique par exemple). Elle présente
+l'avantage de ne pas être corrosive et de lubrifier automatique les
+pompes, moteurs et vérins. \\
+\midrule
+\endhead
+& \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{fonction-alimenter}{%
+\section{Fonction Alimenter}\label{fonction-alimenter}}
+
+L'alimentation est un composant ou un ensemble de composant nécessaire
+lorsque la source d'énergie brute n'est pas conditionnée correctement
+pour le convertisseur du système.
+
+\hypertarget{alimentation-uxe9lectrique}{%
+\subsection{Alimentation électrique}\label{alimentation-uxe9lectrique}}
+
+\hypertarget{transformateur}{%
+\subsubsection{Transformateur}\label{transformateur}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.43501in,height=1.47752in]{media/image133.jpeg}
+\includegraphics[width=1.69658in,height=1.27314in]{media/image134.jpeg}
+& Un transformateur permet de modifier les niveaux de tension entre 2
+circuits électriques. En général l'électricité alternative est stockée à
+des niveaux de tension élevé pour diminuer les pertes par effet Joule
+dans les conducteurs. Par exemple 400000V pour les longues distances
+jusqu'à 220V pour les circuits des particuliers. Souvent les machines
+fonctionnent sur des tension plus faible, 24 ou 48V nécessitant de
+nouveau une conversion par un transformateur supplémentaire. Les
+transformateurs sont constitués de 2 bobinages différents et d'un cœur
+ferromagnétique. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{alimentation-uxe9lectrique-uxe0-duxe9coupage}{%
+\subsubsection{Alimentation électrique à
+découpage}\label{alimentation-uxe9lectrique-uxe0-duxe9coupage}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.30305in,height=0.87618in]{media/image135.jpeg}
+& L'alimentation à découpage est une technique efficace, économique et
+légère d'adapter une source d'énergie électrique à un niveau de tension
+souhaité. Le signal source est haché par des transistors type MOSFET
+pour obtenir le niveau de tension souhaité en sortie. Une régulation
+permet d'adapter le niveau de découpage à la charge en sortie. Des
+capacités permettent de lisser les signaux électriques. En général la
+tension de sortie est plus faible que la tension d'entrée «~buck~» mais
+il existe aussi des modèles qui remonte la tension «~boost~». \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{ruxe9gulateur-de-tension}{%
+\subsubsection{Régulateur de tension}\label{ruxe9gulateur-de-tension}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.86538in,height=1.17044in]{media/image136.png} &
+Le régulateur de tension est un composant électronique économique
+permettant d'abaisseur une source de tension a une tension régulée plus
+faible. En général les puissances sont faibles (alimentation d'un
+microcontrôleur en 3,3V régulé sur une source USB 5V ou une batterie
+LiPo 7,4V par exemple). \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{alimentation-pneumatique-et-hydraulique}{%
+\subsection{Alimentation pneumatique et
+hydraulique}\label{alimentation-pneumatique-et-hydraulique}}
+
+\hypertarget{ruxe9gulateur-de-pression}{%
+\subsubsection{Régulateur de pression}\label{ruxe9gulateur-de-pression}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\endhead
+\includegraphics[width=1.23846in,height=2.19758in]{media/image137.png}
+\includegraphics[width=1.34257in,height=2.20565in]{media/image138.png} &
+Le régulateur de pression permet d'obtenir une pression régulée à une
+valeur souhaitée dans un circuit pneumatique à partir s'une source de
+pression disposant d'un niveau de pression supérieur. En général
+l'énergie pneumatique provient de pompes et de réservoir de pression
+dont la pression peut varier. \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{systuxe8mes-de-conditionnement}{%
+\subsubsection{Systèmes de
+conditionnement}\label{systuxe8mes-de-conditionnement}}
+
+Il est nécessaire de conditionner le fluide avant de la faire circuler
+dans le circuit. Dans le cas de l'énergie pneumatique, il est
+indispensable de s'assurer de la pureté de l'air ainsi que d'un faible
+taux d'humidité. Pour cela on utilise d'une part des filtres permettant
+de filtrer l'air entrant dans le réseau en amont et en aval du
+compresseur. Il est aussi nécessaire d'utiliser d'un
+refroidisseur-assécheur permettant de réduire le taux d'humidité. Dans
+le cas d'un système hydraulique, le fluide est filtré afin d'éliminer
+les impuretés.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\includegraphics[width=2.25581in,height=1.41748in]{media/image139.png} &
+\includegraphics[width=0.92072in,height=0.55118in]{media/image140.png} &
+\includegraphics[width=0.9327in,height=0.55118in]{media/image141.png} &
+\includegraphics[width=1.06595in,height=0.62992in]{media/image142.png} \\
+\midrule
+\endhead
+\emph{Systèmes de filtrage} & \emph{Symbole d'un filtre} & \emph{Symbole
+d'un lubrificateur} & \emph{Symbole d'un déshydratateur} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{systuxe8mes-de-suxe9curituxe9}{%
+\subsubsection{Systèmes de
+sécurité}\label{systuxe8mes-de-suxe9curituxe9}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.50}}@{}}
+\toprule
+Afin de maîtriser la pression dans les conduites, on peut avoir recours
+à des manomètres afin d'avoir une information sur la pression. Les
+régulateurs de pression permettent quant à eux d'évacuer l'air du
+système lorsque la pression est trop grande. Les limiteurs de débit
+permettent de maitriser le débit de fluide.
+
+Les systèmes de clapet anti-retour permettent d'imposer le sens de
+circulation d'un fluide. &
+\includegraphics[width=2.11323in,height=1.26713in]{media/image143.png} \\
+\midrule
+\endhead
+& \emph{Régulateur de débit} \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+\includegraphics[width=2.81395in,height=1.12709in]{media/image144.png} &
+\includegraphics[width=2.79283in,height=1.15116in]{media/image145.png} \\
+\midrule
+\endhead
+\emph{Schéma de compresseur intégré} & \emph{Unité
+filtre-mano-régulateur-lubrificateur} \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{schuxe9ma-composants-pneumatiques-et-hydrauliques}{%
+\section{Schéma -- Composants pneumatiques et
+hydrauliques}\label{schuxe9ma-composants-pneumatiques-et-hydrauliques}}
+
+\includegraphics[width=6.31034in,height=9.39481in]{media/image146.png}
+
+\hypertarget{ressources}{%
+\section{Ressources}\label{ressources}}
+
+{[}1{]} http://www.festo.com.
+
+{[}2{]} Caterpillar -- Pelles hydrauliques 374 D
+Lhttp://s7d2.scene7.com/is/content/Caterpillar/C633539.
+
+{[}3{]} http://www.defense.gouv.fr/.
+
+{[}4{]} http://joho.p.free.fr/.
+
+{[}5{]} http://www.espaceoutillage.com/.
+
+{[}6{]} http://www.directindustry.fr/.
+
+{[}7{]} Patrick Beynet, Fonctions du produit -- Technologie pneumatique
+-- hydraulique pour les systèmes automatisés de production. Lycée
+Rouvière Toulon.
+
+{[}8{]} J. Perrin, F. Binet, J.-J. Dumery, C. Merlaud, J.-P. Trichard,
+Automatique et Informatique Industrielle -- Bases théoriques,
+méthodologiques et techniques, Éditions Nathan Technique, 2004.
+
+{[}9{]} Guide des Automatismes Industriels.
+
+{[}10{]} Cours «~Préactionneurs~». La Martinière Monplaisir.
+
+Documentation additionnelle~: Stéphane Genouel stephane.genouel.free.fr
+et s2i.chateaubriand.free.fr
+
+\end{document}
